@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simcuit</title>
+    <meta name="description" content="A circuit simulator." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      * {
+        user-select: none;
+        font-family: sans-serif;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body, canvas {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background-color: #000000;
+      }
+
+      #panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 300px;
+        /* background-color: rgba(255, 255, 255, 0.25); */
+        /* backdrop-filter: blur(14px); */
+        padding: 14px;
+        /* box-shadow: 0 0 8px #55433b; */
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        color: #f5deb3;
+        scrollbar-color: #55433b #f5deb3;
+        background-color: #55433b;
+      }
+
+      #panel * {
+        margin: 0;
+      }
+
+      #panel > div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      button, input[type=text] {
+        display: block;
+        width: 100%;
+        height: 48px;
+        border: none;
+        border-radius: 14px;
+        text-align: start;
+        padding: 14px;
+        color: #55433b;
+        /* background-color: rgba(255, 255, 255, 0.75); */
+        background-color: #f5deb3;
+      }
+
+      button:hover {
+        /* box-shadow: 0 0 8px #f5deb3; */
+        transform: scale(1.05);
+      }
+
+      button:active {
+        /* box-shadow: none; */
+        transform: scale(1.0);
+      }
+
+      #mode {
+        position: fixed;
+        width: auto;
+        top: 0;
+        right: 0;
+        margin: 14px;
+      }
+
+      #mode:hover {
+        /* box-shadow: 0 0 8px #f5deb3; */
+        transform: scale(1.05);
+      }
+
+      #info {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        padding: 8px;
+        color: white;
+        background-color: #55433b;
+        margin: 14px;
+        border-radius: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <div id="panel">
+      <h2>Projeto:</h2>
+      <div>
+        <input type="text" id="label" placeholder="Nome do circuito" />
+        <a id="download" hidden></a>
+        <button id="save">Salvar arquivo</button>
+        <input id="file" type="file" hidden />
+        <button id="load">Carregar arquivo</button>
+        <button id="clear">Limpar tela</button>
+      </div>
+      <h2>Componentes:</h2>
+      <div id="components">
+        <button data-id="input">Entrada</button>
+        <button data-id="output">Saída</button>
+        <button data-id="buffer">Buffer</button>
+        <button data-id="inverter">NOT</button>
+        <button data-id="and">AND</button>
+        <button data-id="nand">NAND</button>
+        <button data-id="or">OR</button>
+        <button data-id="nor">NOR</button>
+        <button data-id="xor">XOR</button>
+        <button data-id="xnor">XNOR</button>
+        <button data-id="three-and">3-AND</button>
+        <button data-id="three-nand">3-NAND</button>
+        <button data-id="three-or">3-OR</button>
+        <button data-id="three-nor">3-NOR</button>
+        <button data-id="seven-display">7-Seg-Display</button>
+        <button data-id="ic">IC</button>
+      </div>
+    </div>
+    <!-- <div id="info">
+      <p>test</p>
+    </div> -->
+    <button id="mode" data-mode="0">Interagir</button>
+    <script src="bundle.js"></script>
+  </body>
+</html>
